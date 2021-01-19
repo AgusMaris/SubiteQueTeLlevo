@@ -17,7 +17,7 @@ namespace SubiteQueTeLlevo.Data
         public DateTime FyHSalida { get; set; }
         public int TiempoEstimado { get; set; }
         [ForeignKey("EstadoViaje")]
-        public int EstadoViajeId { get; set; }
+        public EstadoViajeId EstadoViajeId { get; set; }
         public EstadoViaje EstadoViaje { get; set; }
         [ForeignKey("Auto")]
         public int AutoId { get; set; }
@@ -35,10 +35,18 @@ namespace SubiteQueTeLlevo.Data
         public List<ViajePerfil> ViajePerfil { get; set; }
 
     }
-    public enum EstadoViaje
+
+    public class EstadoViaje
     {
-        Pendiente,
-        Cancelado,
-        Completado
+        public EstadoViajeId EstadoViajeId { get; set; }
+        public string Nombre { get; set; }
+        public List<Viaje> Viajes { get; set; }
+    }
+
+    public enum EstadoViajeId:int
+    {
+        Pendiente = 0,
+        Cancelado = 1 ,
+        Completado = 2
     }
 }

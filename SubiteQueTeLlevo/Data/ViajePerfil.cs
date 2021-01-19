@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SubiteQueTeLlevo.Data
@@ -17,14 +18,22 @@ namespace SubiteQueTeLlevo.Data
         public string PerfilId { get; set; }
         
         public Perfil Perfil { get; set; }
-        public int EstadoViajePerfilId { get; set; }
+        public EstadoViajePerfilId EstadoViajePerfilId { get; set; }
         public EstadoViajePerfil EstadoViajePerfil { get; set; }
     }
-    public enum EstadoViajePerfil
+
+    public class EstadoViajePerfil
     {
-        Cancelado,
-        Completado,
-        PendienteAceptacion,
-        Reservado
+        public EstadoViajePerfilId EstadoViajePerfilId { get; set; }
+        public string Nombre { get; set; }
+        public List<ViajePerfil> ViajePerfil { get; set; }
+    }
+
+    public enum EstadoViajePerfilId:int
+    {
+        Cancelado=0,
+        Completado=1,
+        PendienteAceptacion=2,
+        Reservado=3
     }
 }
