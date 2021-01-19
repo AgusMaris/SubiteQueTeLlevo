@@ -8,7 +8,7 @@ using SubiteQueTeLlevo.Data;
 
 namespace SubiteQueTeLlevo.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SQTLDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

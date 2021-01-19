@@ -9,7 +9,7 @@ using SubiteQueTeLlevo.Data;
 
 namespace SubiteQueTeLlevo.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SQTLDbContext))]
     [Migration("20210119045822_ModelClassesFixEnum")]
     partial class ModelClassesFixEnum
     {

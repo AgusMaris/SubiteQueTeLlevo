@@ -9,7 +9,7 @@ using SubiteQueTeLlevo.Data;
 
 namespace SubiteQueTeLlevo.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SQTLDbContext))]
     [Migration("20210119043538_ModelClasses")]
     partial class ModelClasses
     {

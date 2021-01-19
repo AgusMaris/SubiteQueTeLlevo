@@ -7,9 +7,9 @@ using System.Text;
 
 namespace SubiteQueTeLlevo.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<Perfil>
+    public class SQTLDbContext : IdentityDbContext<Perfil>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public SQTLDbContext(DbContextOptions<SQTLDbContext> options)
             : base(options)
         {
         }
