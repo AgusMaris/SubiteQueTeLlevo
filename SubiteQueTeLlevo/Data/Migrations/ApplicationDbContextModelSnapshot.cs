@@ -372,7 +372,7 @@ namespace SubiteQueTeLlevo.Data.Migrations
                     b.Property<int>("AutoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DestinoId")
+                    b.Property<int?>("DestinoId")
                         .HasColumnType("int");
 
                     b.Property<int>("DisponibilidadEquipaje")
@@ -387,7 +387,7 @@ namespace SubiteQueTeLlevo.Data.Migrations
                     b.Property<DateTime>("FyHSalida")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OrigenId")
+                    b.Property<int?>("OrigenId")
                         .HasColumnType("int");
 
                     b.Property<float>("Precio")
@@ -547,15 +547,11 @@ namespace SubiteQueTeLlevo.Data.Migrations
 
                     b.HasOne("SubiteQueTeLlevo.Data.Direccion", "Destino")
                         .WithMany()
-                        .HasForeignKey("DestinoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DestinoId");
 
                     b.HasOne("SubiteQueTeLlevo.Data.Direccion", "Origen")
                         .WithMany()
-                        .HasForeignKey("OrigenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrigenId");
 
                     b.Navigation("Auto");
 

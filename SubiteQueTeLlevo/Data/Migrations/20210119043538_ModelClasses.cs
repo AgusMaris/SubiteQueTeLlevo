@@ -181,8 +181,8 @@ namespace SubiteQueTeLlevo.Data.Migrations
                     EstadoViajeId = table.Column<int>(type: "int", nullable: false),
                     EstadoViaje = table.Column<int>(type: "int", nullable: false),
                     AutoId = table.Column<int>(type: "int", nullable: false),
-                    OrigenId = table.Column<int>(type: "int", nullable: false),
-                    DestinoId = table.Column<int>(type: "int", nullable: false)
+                    OrigenId = table.Column<int>(type: "int", nullable: true),
+                    DestinoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -198,13 +198,13 @@ namespace SubiteQueTeLlevo.Data.Migrations
                         column: x => x.DestinoId,
                         principalTable: "Direcciones",
                         principalColumn: "DireccionId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Viajes_Direcciones_OrigenId",
                         column: x => x.OrigenId,
                         principalTable: "Direcciones",
                         principalColumn: "DireccionId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

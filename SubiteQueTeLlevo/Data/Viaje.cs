@@ -24,12 +24,12 @@ namespace SubiteQueTeLlevo.Data
         public Auto Auto { get; set; }
 
         [ForeignKey("Origen")]
-        public int OrigenId { get; set; }
+        public int? OrigenId { get; set; }
         
         public Direccion Origen { get; set; }
 
         [ForeignKey("Destino")]
-        public int DestinoId { get; set; }
+        public int? DestinoId { get; set; }
         
         public Direccion Destino { get; set; }
         public List<ViajePerfil> ViajePerfil { get; set; }
