@@ -10,12 +10,12 @@ namespace SubiteQueTeLlevo.Services
     {
         //Viajes
         public Task<IEnumerable<Viaje>> TraerTodosViajes();
-        public Task<Viaje> TraerViajeId();
-        public Task<Viaje> TraerViajeIdCiudadOrigen();
-        public Task<Viaje> TraerViajeIdCiudadDestino();
-        public Task<bool> UnirseViaje();
-        public Task<bool> ConfirmarPasajero();
-        public Task<bool> CrearViajePerfil();
-        public Task<bool> ModificarViajePerfil();
+        public Task<Viaje> TraerViajeId(int id);
+        public Task<Viaje> TraerViajeIdCiudadOrigen(int id);
+        public Task<Viaje> TraerViajeIdCiudadDestino(int id);
+        public Task<bool> UnirseViaje(Viaje v);
+        public Task<bool> ConfirmarPasajero(ViajePerfil vp);
+        public Task<bool> CrearViajePerfil(ViajePerfil vp);
+        public Task<bool> ModificarViajePerfil(ViajePerfil vp);
     }
 }

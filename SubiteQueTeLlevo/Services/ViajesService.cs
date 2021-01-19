@@ -14,17 +14,17 @@ namespace SubiteQueTeLlevo.Services
             _repo = repo;
         }
 
-        public Task<bool> ConfirmarPasajero()
+        public Task<bool> ConfirmarPasajero(ViajePerfil vp)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> CrearViajePerfil()
+        public Task<bool> CrearViajePerfil(ViajePerfil vp)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> ModificarViajePerfil()
+        public Task<bool> ModificarViajePerfil(ViajePerfil vp)
         {
             throw new NotImplementedException();
         }
@@ -34,22 +34,22 @@ namespace SubiteQueTeLlevo.Services
             throw new NotImplementedException();
         }
 
-        public Task<Viaje> TraerViajeId()
+        public Task<Viaje> TraerViajeId(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Viaje> TraerViajeIdCiudadDestino()
+        public Task<Viaje> TraerViajeIdCiudadDestino(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Viaje> TraerViajeIdCiudadOrigen()
+        public Task<Viaje> TraerViajeIdCiudadOrigen(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UnirseViaje()
+        public Task<bool> UnirseViaje(Viaje v)
         {
             throw new NotImplementedException();
         }
