@@ -35,7 +35,7 @@ namespace SubiteQueTeLlevo
             services.AddDbContext<SQTLDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Perfil>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<SQTLDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();

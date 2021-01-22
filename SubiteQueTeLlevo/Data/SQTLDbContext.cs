@@ -67,5 +67,6 @@ namespace SubiteQueTeLlevo.Data
         public DbSet<Ciudad> Ciudades { get; set; }
         public DbSet<Provincia> Provincias { get; set; }
         
+        
     }
 }
