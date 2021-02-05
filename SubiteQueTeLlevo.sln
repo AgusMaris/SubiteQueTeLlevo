@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubiteQueTeLlevo", "SubiteQueTeLlevo\SubiteQueTeLlevo.csproj", "{5A65A156-E918-4568-BE17-A703136530DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubiteQueTeLlevo", "SubiteQueTeLlevo\SubiteQueTeLlevo.csproj", "{5A65A156-E918-4568-BE17-A703136530DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

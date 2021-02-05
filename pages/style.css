@@ -1,0 +1,157 @@
+body {
+	font-family: Verdana;
+}
+
+.inicio {
+  background-color: #3579DC;
+}
+.centrado{
+	position: absolute;
+	left: 50%;
+	padding-top: 4em;
+	margin: 0;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+  	width: 100vw;
+
+}
+
+[type="date"] {
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+[type="date"]{
+	margin-top: 5vw;
+	font-size: 3vw;
+	border-style: solid;
+  	border-width: 2px;
+  	border-color: black;
+
+
+}
+.caja .container{
+	border-style: solid;
+  	border-width: 2px;
+  	border-color: black;
+}
+[type="time"]{
+	margin-left: 5vw;
+	font-size:3vw;
+	border-style: solid;
+  	border-width: 2px;
+	border-color: black;
+
+}
+.col {
+	padding-bottom: 1vw;
+}
+.princi {
+	margin-top: 10vw;
+}
+
+input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    border-color: black;
+    width: 60vw;
+    margin-top: 4vw;
+    font-size:5vw;
+    text-align:center;
+}
+/* input[type='text']::placeholder
+    {   
+        text-align: left;     
+    } */
+header{
+		color:white;
+		height:50px;
+		width: 800px;
+		line-height:50px;
+		text-align: center;
+		width:100%;
+		background-color: grey;
+		vertical-align: middle;
+		font-size: 25px;
+		border-bottom-style: solid;
+		border-bottom-color: black;
+		border-bottom-width: 2px;
+	}
+
+.princi .btn {
+	border-radius: 0;
+    background-color: white;
+    border-color: black;
+    color: black;
+    border-width: 2px;
+    width:60vw;
+    height: 15vw;
+    font-family: inherit;
+    font-size: 20px;
+    box-shadow: 4px 4px;
+    margin-top: 7vw;
+
+}
+label { 
+	font-size: 3vw; 
+	padding-top: 0px
+	border-top:0px
+	margin-top: 0px;
+	}
+.botoncito{
+    border-radius: 0;
+    background-color: white;
+    border-color: black;
+    border-width: 2px;
+    width:30vw;
+    height: 8vw;
+    font-family: inherit;
+    font-size: 4vw;
+    box-shadow: 4px 4px;
+    margin-top: 2vw;
+
+
+    }
+
+
+.btn{
+    border-radius: 0;
+    background-color: #3579DC;
+    border-color: black;
+    border-width: 2px;
+    width:60vw;
+    height: 15vw;
+    font-family: inherit;
+    font-size: 20px;
+    color: white;
+ 	box-shadow: 5px 5px black;
+    margin-top: 7vw;
+    }
+.btn:active {
+  color: white;
+}
+
+.row{
+	padding-top: 1em;
+	margin-bottom-bottom: 14em;
+}
+
+h2{
+	padding-bottom: 5em;
+	font-size: 5vw;
+}
+
+p{
+	padding-top: 10px;
+	display:inline-block;
+}
+
+label {
+	margin-left:30px;
+	font-size: 1em;
+}

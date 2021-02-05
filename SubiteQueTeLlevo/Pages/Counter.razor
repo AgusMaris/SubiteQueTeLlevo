@@ -2,26 +2,50 @@
 @using SubiteQueTeLlevo.Services
 @using SubiteQueTeLlevo.Data
 @inject ViajesService viajeService
+@inject NavigationManager nav
 
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-@if (ciudades != null)
+<h1>BuscarViaje</h1>
+<label>Origen</label>
+<form @onsubmit="BuscarViaje">
+    <label>Ciudad origen:</label>
+    <input @bind-value="patternO" />
+    <label>Ciudad destino:</label>
+    <input @bind-value="patternD" />
+    <label>Fecha y Hora</label>
+    <input type="date" @bind-value="fecha" />
+    <button type="submit" class="btn btn-success" value="Buscar"></button>
+</form>
+@if (viajes != null)
 {
-    foreach (var ciudad in ciudades)
-    {
-        <p>@ciudad.Nombre</p>
-        <p>@ciudad.Provincia.Nombre</p>
-    }
+    <div class="container">
+        @foreach (var viaje in viajes)
+        {
+            <div class="border border-dark" @onclick="()=>ViajeDetalle(viaje.ViajeId)">
+                <div class="row d-flex justify-content-around">
+                    <div class="mx-3">@viaje.Origen.Ciudad.Nombre</div>
+                    <div class="mx-3">@viaje.Destino.Ciudad.Nombre</div>
+
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="mx-3">@viaje.FyHSalida</div>
+                    <div class="mx-3">@(viaje.AsientosTotales - viaje.ViajePerfil.Count) Lugares Disponibles</div>
+                </div>
+            </div>
+
+        }
+    </div>
 }
 
 @code {
-    private int currentCount = 0;
-    List<Ciudad> ciudades;
-    private void IncrementCount()
+    List<Viaje> viajes;
+    DateTime fecha;
+    string patternO, patternD;
+    protected void BuscarViaje()
     {
-        
+        viajes = viajeService.TraerViajeBusqueda(patternO, patternD, fecha);
+    }
+    protected void ViajeDetalle(int id)
+    {
+        nav.NavigateTo("/viaje/" + id);
     }
 }

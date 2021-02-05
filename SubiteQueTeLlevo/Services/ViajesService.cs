@@ -1,4 +1,5 @@
-﻿using SubiteQueTeLlevo.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SubiteQueTeLlevo.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,29 @@ namespace SubiteQueTeLlevo.Services
             throw new NotImplementedException();
         }
 
-        public Task<Viaje> TraerViajeId(int id)
+        public List<Viaje> TraerViajeBusqueda(string ciudadO, string ciudadD, DateTime fecha)
         {
-            throw new NotImplementedException();
+            var viajes = _repo.Viajes.Where(v => v.Destino.Ciudad.Nombre.Contains(ciudadD))
+                .Where(v => v.Origen.Ciudad.Nombre.Contains(ciudadO))
+                .Where(v => v.FyHSalida >= fecha)
+                .Include(v => v.Destino.Ciudad)
+                .Include(v => v.Origen.Ciudad)
+                .Include(v => v.ViajePerfil)
+                .ToList();
+            return viajes;
+        }
+
+        public Viaje TraerViajeId(int id)
+        {
+            var viaje = _repo.Viajes.Where(v => v.ViajeId == id)
+                .Include(v=>v.Origen.Ciudad)
+                .Include(v=>v.Destino.Ciudad)
+                .Include(v=>v.ViajePerfil)
+                .Include(v => v.Auto.Modelo.Marca)
+                    .Include(v => v.Auto.Dueño)
+                .First();
+            return viaje;
+
         }
 
         public Task<Viaje> TraerViajeIdCiudadDestino(int id)

@@ -1,0 +1,70 @@
+﻿@page "/viaje/{id:int}"
+@using SubiteQueTeLlevo.Services
+@using SubiteQueTeLlevo.Data
+@inject ViajesService viajeService
+<h1 class="text-center">Viaje</h1>
+<div class="container">
+    @if (viaje != null)
+    {
+        <div class="row">
+            <div class="col-5"><h3>@viaje.Origen.Ciudad.Nombre</h3></div>
+            <div class="col-2"><h3>&#x21D2;</h3></div>
+            <div class="col-5"><h3>@viaje.Destino.Ciudad.Nombre</h3></div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-6">Lugares disponibles:</div>
+
+            <div class="col-6 text-center">@(viaje.AsientosTotales - viaje.ViajePerfil.Count)</div>
+        </div>
+        <div class="row">
+            <div class="col-6">Dia y hora de salida:</div>
+
+            <div class="col-6 text-center">@viaje.FyHSalida</div>
+        </div>
+        <div class="row">
+            <div class="col-6">Precio:</div>
+            <div class="col-6 text-center">@viaje.Precio</div>
+        </div>
+        <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+        <div class="row">
+            <div class="col-6">
+                <img />
+            </div>
+            <div class="col-6 d-flex flex-column">
+                <div>@viaje.Auto.Modelo.Nombre</div>
+                <div>@viaje.Auto.Modelo.Marca.Nombre</div>
+                <div><br /></div>
+            </div>
+        </div>
+        <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+        <div class="row">
+            <div class="col-6">
+                <img />
+            </div>
+            <div class="col-6 d-flex flex-column">
+                <div><u>CONDUCTOR</u></div>
+                <div>@viaje.Auto.Dueño.Nombre @viaje.Auto.Dueño.Apellido</div>
+                <div>@for (int i = 0; i < viaje.Auto.Dueño.ClasificacionPromedio; i++)
+                {
+                    <span>&#x2605;</span>
+                }</div>
+            </div>
+        </div>
+        <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+        <div class="text-center mb-3"><button class="btn btn-primary">Ver acompañantes</button></div>
+        <div class="text-center"><button class="btn btn-success">Unirse</button></div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    Viaje viaje;
+    protected override Task OnInitializedAsync()
+    {
+        viaje = viajeService.TraerViajeId(id);
+        return base.OnInitializedAsync();
+    }
+}
