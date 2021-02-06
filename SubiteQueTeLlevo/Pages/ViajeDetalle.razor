@@ -2,6 +2,9 @@
 @using SubiteQueTeLlevo.Services
 @using SubiteQueTeLlevo.Data
 @inject ViajesService viajeService
+@inject NavigationManager nav
+
+
 <h1 class="text-center">Viaje</h1>
 <div class="container">
     @if (viaje != null)
@@ -46,15 +49,17 @@
             <div class="col-6 d-flex flex-column">
                 <div><u>CONDUCTOR</u></div>
                 <div>@viaje.Auto.Dueño.Nombre @viaje.Auto.Dueño.Apellido</div>
-                <div>@for (int i = 0; i < viaje.Auto.Dueño.ClasificacionPromedio; i++)
-                {
-                    <span>&#x2605;</span>
-                }</div>
+                <div>
+                    @for (int i = 0; i < viaje.Auto.Dueño.ClasificacionPromedio; i++)
+                    {
+                        <span>&#x2605;</span>
+                    }
+                </div>
             </div>
         </div>
         <hr style="height:1px;border:none;color:#333;background-color:#333;" />
         <div class="text-center mb-3"><button class="btn btn-primary">Ver acompañantes</button></div>
-        <div class="text-center"><button class="btn btn-success">Unirse</button></div>
+        <div class="text-center"><button class="btn btn-success" @onclick="Unirse">Unirse</button></div>
     }
 </div>
 
@@ -66,5 +71,10 @@
     {
         viaje = viajeService.TraerViajeId(id);
         return base.OnInitializedAsync();
+    }
+    public async Task Unirse()
+    {
+        await viajeService.UnirseViaje(id);
+        nav.NavigateTo("/");
     }
 }

@@ -1,4 +1,4 @@
-﻿@page "/counter"
+﻿@page "/Buscar"
 @using SubiteQueTeLlevo.Services
 @using SubiteQueTeLlevo.Data
 @inject ViajesService viajeService
@@ -6,9 +6,9 @@
 
 <h1>BUSCAR VIAJE</h1>
 <form @onsubmit="BuscarViaje">
-    <div class="form-row mb-2" ><input class=" form-control " @bind-value="patternO" placeholder="Origen" /></div>
-    <div class="form-row mb-2 "><input class="form-control  " @bind-value="patternD" placeholder="Destino" /></div>
-    <label>Fecha y Hora</label>
+    <div class="form-row mb-2" ><input class=" form-control inputText" @bind-value="patternO" placeholder="Origen" /></div>
+    <div class="form-row mb-2 "><input class="form-control inputText" @bind-value="patternD" placeholder="Destino" /></div>
+    <label>Fecha</label>
     <input type="date" @bind-value="fecha" />
     <div class="mb-3 text-center"><button type="submit" class="btn btn-success" value="Buscar">BUSCAR</button></div>
 
@@ -37,7 +37,7 @@
 
 @code {
     List<Viaje> viajes;
-    DateTime fecha;
+    DateTime fecha=DateTime.Now;
     string patternO, patternD;
     protected void BuscarViaje()
     {

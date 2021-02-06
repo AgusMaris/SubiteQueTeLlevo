@@ -12,7 +12,7 @@ namespace SubiteQueTeLlevo.Services
         public Task<IEnumerable<Viaje>> TraerTodosViajes();
         public Viaje TraerViajeId(int id);
         public List<Viaje> TraerViajeBusqueda(string ciudadO, string ciudadD, DateTime fecha);
-        public Task<bool> UnirseViaje(Viaje v);
+        public Task UnirseViaje(int idViaje);
         public Task<bool> ConfirmarPasajero(ViajePerfil vp);
         public Task<bool> CrearViajePerfil(ViajePerfil vp);
         public Task<bool> ModificarViajePerfil(ViajePerfil vp);
