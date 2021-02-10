@@ -4,15 +4,19 @@
 @inject ViajesService viajeService
 @inject NavigationManager nav
 
-<h1>BUSCAR VIAJE</h1>
+<h1 class="text-center">BUSCAR VIAJE</h1>
 <form @onsubmit="BuscarViaje">
     <div class="form-row mb-2" ><input class=" form-control inputText" @bind-value="patternO" placeholder="Origen" /></div>
     <div class="form-row mb-2 "><input class="form-control inputText" @bind-value="patternD" placeholder="Destino" /></div>
     <label>Fecha</label>
     <input type="date" @bind-value="fecha" />
-    <div class="mb-3 text-center"><button type="submit" class="btn btn-success" value="Buscar">BUSCAR</button></div>
-
-    <h3 class="border-top border-bottom border-dark">Viajes Proximos</h3>
+    <div class="mb-3 text-center">
+        <button type="submit" class="btn btn-success" style=" color:black; margin: 1em; box-shadow: 4px 4px black; border-radius:0; background-color:#3579DC; border-color:black; width:250px; height:70px; font-size: 20px; padding:1em; color:white;"
+                value="Buscar">
+            BUSCAR
+        </button>
+    </div>
+    <h3 class="border-top border-bottom border-dark text-center">Viajes Proximos</h3>
 </form>
 @if (viajes != null)
 {
