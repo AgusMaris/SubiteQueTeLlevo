@@ -1,0 +1,37 @@
+﻿@using SubiteQueTeLlevo.Services
+@using SubiteQueTeLlevo.Data
+@inject ViajesService viajeService
+@page "/veracompañantes/{idViaje:int}"
+
+<h3 class="text-center">Acompañantes</h3>
+<div>
+    @if (perfiles != null)
+    {
+        foreach (Perfil perfil in perfiles)
+        {
+            <div class="justify-content-center border-dark border">
+                <div class="justify-content-center"><h4 class="justify-content-center text-center">@perfil.UserName</h4></div>
+
+                <div class="text-center">
+                    @for (int i = 0; i < perfil.ClasificacionPromedio; i++)
+                    {
+                        <span>&#x2605;</span>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
+@code {
+    [Parameter]
+    public int idViaje { get; set; }
+    List<Perfil> perfiles;
+    protected override Task OnInitializedAsync()
+    {
+        perfiles = viajeService.TraerViajePerfilIdV(idViaje);
+        return base.OnInitializedAsync();
+    }
+
+}

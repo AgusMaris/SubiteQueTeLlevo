@@ -81,6 +81,18 @@ namespace SubiteQueTeLlevo.Services
             throw new NotImplementedException();
         }
 
+        public List<Perfil> TraerViajePerfilIdV(int idViaje)
+        {
+            var viaje = _repo.Viajes.Where(v => v.ViajeId == idViaje).Include(v=>v.ViajePerfil)
+                .ThenInclude(vp => vp.Perfil).First();
+            List<Perfil> acompañantes = new List<Perfil>();
+            foreach (ViajePerfil vp in viaje.ViajePerfil)
+            {
+                acompañantes.Add(vp.Perfil);
+            }
+            return acompañantes;
+        }
+
         [Authorize]
         public async Task UnirseViaje(int idViaje)
         {

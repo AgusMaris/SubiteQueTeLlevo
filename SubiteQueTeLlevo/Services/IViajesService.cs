@@ -16,5 +16,6 @@ namespace SubiteQueTeLlevo.Services
         public Task<bool> ConfirmarPasajero(ViajePerfil vp);
         public Task<bool> CrearViajePerfil(ViajePerfil vp);
         public Task<bool> ModificarViajePerfil(ViajePerfil vp);
+        public List<Perfil> TraerViajePerfilIdV(int idViaje);
     }
 }
