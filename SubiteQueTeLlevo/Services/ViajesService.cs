@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SubiteQueTeLlevo.Data;
@@ -80,6 +81,7 @@ namespace SubiteQueTeLlevo.Services
             throw new NotImplementedException();
         }
 
+        [Authorize]
         public async Task UnirseViaje(int idViaje)
         {
             ViajePerfil vp = new ViajePerfil();

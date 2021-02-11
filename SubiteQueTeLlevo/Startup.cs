@@ -44,6 +44,7 @@ namespace SubiteQueTeLlevo
             services.AddHttpContextAccessor();
             services.AddTransient<ViajesService>();
             services.AddHttpContextAccessor();
+            services.AddAuthorizationCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
