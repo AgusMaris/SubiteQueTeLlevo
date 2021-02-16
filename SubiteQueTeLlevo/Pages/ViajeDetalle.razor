@@ -34,7 +34,7 @@
         <hr style="height:1px;border:none;color:#333;background-color:#333;" />
         <div class="row">
             <div class="col-6">
-                <img />
+                <img src="/img/Pasajero.png" style="width:60%; display:block; margin-right:auto; margin-left:auto"/>
             </div>
             <div class="col-6 d-flex flex-column">
                 <div>@viaje.Auto.Modelo.Nombre</div>
@@ -45,7 +45,7 @@
         <hr style="height:1px;border:none;color:#333;background-color:#333;" />
         <div class="row">
             <div class="col-6">
-                <img />
+                <img src="/img/Auto.png" style="width:60%; display:block; margin-right:auto; margin-left:auto" />
             </div>
             <div class="col-6 d-flex flex-column">
                 <div><u>CONDUCTOR</u></div>
@@ -66,7 +66,7 @@
             </button>
         </div>
         <div class="text-center">
-            <button type="submit" class="boton-aplicacion"
+            <button type="submit" class="boton-aplicacion alert alert-success"
                     value="Unirse" @onclick="Unirse">
                 Unirse
             </button>
@@ -75,6 +75,7 @@
 </div>
 
 @code {
+    string message = "Unido exitosamente";
     [Parameter]
     public int id { get; set; }
     Viaje viaje;
@@ -83,13 +84,17 @@
         viaje = viajeService.TraerViajeId(id);
         return base.OnInitializedAsync();
     }
+    [Inject] IJSRuntime JSRuntime { get; set; }
     public async Task Unirse()
     {
         await viajeService.UnirseViaje(id);
+        await JSRuntime.InvokeAsync<object>("Swal.fire",
+                                                     "Unido","Se ha unido al viaje correctamente", "success");
         nav.NavigateTo("/");
     }
     public void VerAcompañantes()
     {
+
         nav.NavigateTo("/veracompañantes/" + viaje.ViajeId);
     }
 }

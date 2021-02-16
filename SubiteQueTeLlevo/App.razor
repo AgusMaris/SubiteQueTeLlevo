@@ -1,10 +1,11 @@
+@inject NavigationManager navMan
 <CascadingAuthenticationState>
 
     <Router AppAssembly="@typeof(Program).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <h4>Not authorized.</h4>
+                    @if (true) { navMan.NavigateTo("Identity/Account/Login"); }
                 </NotAuthorized>
                 <Authorizing>
                     <h4>Authentication in progress...</h4>
