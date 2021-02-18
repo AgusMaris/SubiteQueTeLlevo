@@ -1,0 +1,83 @@
+﻿@using SubiteQueTeLlevo.Services
+@inject ViajesService viajesService
+@inject NavigationManager nav
+@page "/Preferencias"
+<div class="px-4 d-flex flex-column">
+
+    <div class="row justify-content-center">
+        <h2 class="justify-content-center">PREFERENCIAS</h2>
+    </div>
+    <div class="m-3" style="font-size:large; font-family:Verdana">
+        <div class="row border border-dark justify-content-center ">
+            <div class="col-9 text-center"><p>Disponibilidad Equipaje</p></div>
+            <div class="col-2 text-center custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" @bind-value="DispEquipaje">
+                <label class="custom-control-label" for="customSwitch1"></label>
+            </div>
+        </div>
+        <div class="row border border-dark justify-content-center">
+            <div class="col-8 text-center"><label>Lugares Disponibles</label></div>
+            <div class="col-2 text-center">
+                <select @onchange="@SeleccionarLugaresD">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>    <div class="row border border-dark justify-content-center">
+            <div class="col-8 text-center"><label>Calificacion Conductor</label></div>
+            <div class="col-2 text-center">
+                <select @onchange="@SeleccionarCalificacion">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>
+        <div class="row border border-dark justify-content-center">
+            <div class="col-8 text-center"><label>Antigüedad Auto</label></div>
+            <div class="col-2 text-center justify-content-center">
+                <input type="number" min="0" max="30" class="border border-dark" @bind-value="AntiguedadAuto"/>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6 text-center">
+                <button type="submit" class="btn btn-danger" style=" color:black; margin: 1em; box-shadow: 4px 4px black; border-radius:0; background-color:#3579DC; border-color:black; font-size: 20px; padding:1em; color:white;"
+                        value="Buscar">
+                    CANCELAR
+                </button>
+
+            </div>
+            <div class="col-6 text-center">
+                <button type="submit" class="btn btn-danger" style=" color:black; margin: 1em; box-shadow: 4px 4px black; border-radius:0; background-color:#3579DC; border-color:black; font-size: 20px; padding:1em; color:white;"
+                        value="Buscar" @onclick="GuardarPreferencias">
+                    GUARDAR
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    bool DispEquipaje;
+    int LugaresDisponibles;
+    int CalificacionConductor;
+    int AntiguedadAuto;
+    protected void GuardarPreferencias()
+    {
+        viajesService.GuardarPreferencias(DispEquipaje, LugaresDisponibles, CalificacionConductor, AntiguedadAuto);
+        nav.NavigateTo("/buscar");
+    }
+    void SeleccionarLugaresD(ChangeEventArgs e)
+    {
+        Int32.TryParse(e.Value.ToString(), out LugaresDisponibles);
+    }
+    void SeleccionarCalificacion(ChangeEventArgs e)
+    {
+        Int32.TryParse(e.Value.ToString(), out CalificacionConductor);
+    }
+}

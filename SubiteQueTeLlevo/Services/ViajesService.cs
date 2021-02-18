@@ -15,6 +15,7 @@ namespace SubiteQueTeLlevo.Services
     public class ViajesService:IViajesService
     {
         private readonly UserManager<Perfil> _userManager;
+        public static PreferenciasModel preferencias;
         private readonly SQTLDbContext _repo;
         private readonly IHttpContextAccessor _httpContextAccessor;
         public ViajesService(SQTLDbContext repo, UserManager<Perfil> userManager, IHttpContextAccessor httpContextAccessor)
@@ -22,12 +23,15 @@ namespace SubiteQueTeLlevo.Services
             _repo = repo;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
+            
         }
 
         public Task<bool> ConfirmarPasajero(ViajePerfil vp)
         {
             throw new NotImplementedException();
         }
+
+
 
         public Task<bool> CrearViajePerfil(ViajePerfil vp)
         {
@@ -46,10 +50,23 @@ namespace SubiteQueTeLlevo.Services
 
         public List<Viaje> TraerViajeBusqueda(string ciudadO, string ciudadD, DateTime fecha)
         {
+            if (preferencias == null)
+            {
+                preferencias = new PreferenciasModel
+                {
+                    DisponibilidadEquipaje = true,
+                    AntiguedadAuto = 3000,
+                    CalificacionConductor = 0,
+                    LugaresDisponibles = 0
+                };
+            }
             var viajes = _repo.Viajes.Where(v => v.Destino.Ciudad.Nombre.Contains(ciudadD))
                 .Where(v => v.Origen.Ciudad.Nombre.Contains(ciudadO))
+                .Where(v=> v.DisponibilidadEquipaje==preferencias.DisponibilidadEquipaje)
+                .Where(v=> v.Auto.Dueño.ClasificacionPromedio>=preferencias.CalificacionConductor)
+                .Where(v=> (DateTime.Now.Year - v.Auto.Modelo.Anio)<=preferencias.AntiguedadAuto)
                 .Where(v => v.FyHSalida >= fecha)
-                .Where(v=> (v.AsientosTotales-v.ViajePerfil.Count)>0)
+                .Where(v=> (v.AsientosTotales-v.ViajePerfil.Count)>=preferencias.LugaresDisponibles)
                 .Where(v=> v.EstadoViajeId==EstadoViajeId.Pendiente)
                 .Include(v => v.Destino.Ciudad)
                 .Include(v => v.Origen.Ciudad)
@@ -104,6 +121,14 @@ namespace SubiteQueTeLlevo.Services
             vp.EstadoViajePerfilId = EstadoViajePerfilId.PendienteAceptacion;
             _repo.Add(vp);
             _repo.SaveChanges();
+        }
+        public void GuardarPreferencias(bool DispEquipaje, int LugaresDisponibles, int CalificacionConductor, int AntiguedadAuto)
+        {
+            preferencias = new PreferenciasModel();
+            preferencias.AntiguedadAuto = AntiguedadAuto;
+            preferencias.DisponibilidadEquipaje = DispEquipaje;
+            preferencias.CalificacionConductor = CalificacionConductor;
+            preferencias.LugaresDisponibles = LugaresDisponibles;
         }
     }
 }

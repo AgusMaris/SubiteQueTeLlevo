@@ -5,7 +5,7 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    @if (true) { navMan.NavigateTo("Identity/Account/Login"); }
+                    {@if (true) { navMan.NavigateTo("/identity/account/login"); } }
                 </NotAuthorized>
                 <Authorizing>
                     <h4>Authentication in progress...</h4>

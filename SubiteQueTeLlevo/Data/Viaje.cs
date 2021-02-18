@@ -13,7 +13,7 @@ namespace SubiteQueTeLlevo.Data
         public int ViajeId { get; set; }
         public int AsientosTotales { get; set; }
         public float Precio { get; set; }
-        public int DisponibilidadEquipaje { get; set; }
+        public bool DisponibilidadEquipaje { get; set; }
         public DateTime FyHSalida { get; set; }
         public int TiempoEstimado { get; set; }
         [ForeignKey("EstadoViaje")]
